@@ -12,4 +12,5 @@ print(df2)
 
 
 compression_opts = dict(method='zip',archive_name='out.csv')
-df1.to_csv('out.zip',sep=';',index=False,compression=compression_opts)  
+df1.to_csv('out.zip',sep=';',compression=compression_opts)
+print(df1.to_csv(sep=';'))
