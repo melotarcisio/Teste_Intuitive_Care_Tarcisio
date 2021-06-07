@@ -25,8 +25,8 @@ def main():
 
     down_aux = soup.find_all('tr')
     down_link = None
+    
     for tr in down_aux:
- 
         if tr.find(text='Componente Organizacional') != None:
             a = tr.find('a')
             down_link = a['href']
