@@ -1,60 +1,74 @@
-from tabula import read_pdf,convert_into
+from tabula import read_pdf
 import pandas
-import csv
+import zipfile
+import os
 
 #Salvando as tabelas
-D_F = read_pdf('Componente_Organizacional.pdf',pages=79)
-D_F2 = read_pdf('Componente_Organizacional.pdf',pages=[79,80,81,82,83,84])
-D_F3 = read_pdf('Componente_Organizacional.pdf',pages=85)
+D_F = read_pdf('Componente_Organizacional.pdf',pages=[79,80,81,82,83,84,85])
+
 
 def create_csv(file_content,file_name):
     new_file = open(file_name,'w')
     new_file.write(file_content)
     print('Arquivo criado com sucesso')
+    new_file.close()
 
-def repair_name(tbl):
-    tbl = tbl.drop(0)
-    tbl.columns = ['Código','Descrição da categoria']
-    return tbl
+def repair_table(df):
+    df.columns = ['Código;Descrição da categoria']
+    df = df.drop(0)
+    for linha in range(df.shape[0]):
+        df.iat[linha,0]=df.iat[linha,0].replace(' ', ';',1)
+    df = df.sort_index()
+    return df
+
+def table_concatenate(df):
+    dfs = [None,None,None,None,None,None]
+    dfs[0] = pandas.DataFrame(df[1])
+    dfs[0].columns = ['Código','Descrição da categoria']
+    dfs[0] = dfs[0].drop(0)
+    dfs[0].index=dfs[0].index-1
+    df2 = dfs[0]
+    for pagina  in range(1,6):
+        dfs[pagina] = pandas.DataFrame(df[pagina+1])
+        dfs[pagina].loc[-1] = dfs[pagina].columns
+        dfs[pagina].columns = ['Código','Descrição da categoria']
+        dfs[pagina].index = dfs[pagina].index + df2.shape[0] +1
+        dfs[pagina] = dfs[pagina].sort_index()
+        df2 = pandas.concat([df2,dfs[pagina]],axis=0)
+    return df2  
+
+def zip_files(zip_name,files_,):
+    zf=zipfile.ZipFile(zip_name,'w')
+    for file_name in files_:
+        zf.write(file_name)
+        os.remove(file_name)
+    zf.close()
+
 
 def main():
+    files = ['table1.csv','table2.csv','table3.csv']
 
-
-    #Separando a primeira tabela
+    #Primeira tabela
     df1 = pandas.DataFrame(D_F[0])
-    #df1 = repair_name(df1)
-    #df1 = df1.to_csv(sep=';',encoding='utf-8')
+    df1 = repair_table(df1)         #Resolvendo o problema de leitura da tabela
+    df1 = df1.to_csv(encoding='utf-8',index=False)
+    create_csv(df1,'table1.csv')
 
-    #Separando a segunda tabela
-    i = [None,None,None,None,None,None]
-    i[0] = pandas.DataFrame(D_F2[1])
-    i[0].columns = ['Código','Descrição da categoria']
-    i[0] = i[0].drop(0)
-    i[0].index=i[0].index-1
-    j = 1
-    df2 = i[0]
-    while j<6:
-        i[j] = pandas.DataFrame(D_F2[j+1])
-        i[j].loc[-1] = i[j].columns
-        i[j].columns = ['Código','Descrição da categoria']
-        i[j].index = i[j].index + df2.shape[0] +1
-        i[j] = i[j].sort_index()
-        df2 = pandas.concat([df2,i[j]],axis=0)
-        j = j+1
-    df2 = df2.to_csv(sep=';',encoding='utf-8')  
-    #print(j)
-
-  
- 
+    #Segunda tabela
+    df2 = table_concatenate(D_F)        #Para concatenar a tabela que se estende por várias páginas no pdf
+    df2 = df2.to_csv(sep=';',encoding='utf-8',index=False)
     create_csv(df2,'table2.csv')
 
-    
-    
-    
-    
-    
-    #compression_opts = dict(method='zip',archive_name='out.csv')
-    #df1.to_csv('out.zip',sep=';',compression=compression_opts)
+
+    #Terceira tabela
+    df3 = pandas.DataFrame(D_F[7])
+    df3 = repair_table(df3)        #Resolvendo o problema de leitura da tabela
+    df3 = df3.to_csv(encoding='utf-8',index=False)
+    create_csv(df3,'table3.csv')
+
+    #Compactando arquivos
+    zip_files('Teste_Intuitive_Care_Tarcisio.zip',files)
+
 
 if __name__=='__main__':    
     main()
