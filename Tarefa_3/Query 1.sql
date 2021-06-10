@@ -13,60 +13,60 @@ drop table if exists table_5;
 drop table if exists table_relatorio;
 /*FIZ ASSIM POIS, CASO SEJA EXECUTADO NOVAMENTE A QUERY SE ADAPTARA AS TABELAS JA PREVIAMENTE CRIADAS*/
 CREATE TABLE IF NOT EXISTS table_1 (
-`DATA` varchar(256),
-`REG_ANS` varchar(256),
-`CS_CONTA_CONTABIL` varchar(256),
-`DESCRICAO` varchar(256),
-`VL_SALDO_FINAL` varchar(256)
+    `DATA` varchar(256),
+    `REG_ANS` varchar(256),
+    `CS_CONTA_CONTABIL` varchar(256) primary key,
+    `DESCRICAO` varchar(256),
+    `VL_SALDO_FINAL` varchar(256)
  );truncate table table_1;
 CREATE TABLE IF NOT EXISTS table_2 (
-`DATA` varchar(256),
-`REG_ANS` varchar(256),
-`CS_CONTA_CONTABIL` varchar(256),
-`DESCRICAO` varchar(256),
-`VL_SALDO_FINAL` varchar(256)
+    `DATA` varchar(256),
+    `REG_ANS` varchar(256),
+    `CS_CONTA_CONTABIL` varchar(256) primary key,
+    `DESCRICAO` varchar(256),
+    `VL_SALDO_FINAL` varchar(256)
  );truncate table table_2; 
 CREATE TABLE IF NOT EXISTS table_3 (
-`DATA` varchar(256),
-`REG_ANS` varchar(256),
-`CS_CONTA_CONTABIL` varchar(256),
-`DESCRICAO` varchar(256),
-`VL_SALDO_FINAL` varchar(256)
+    `DATA` varchar(256),
+    `REG_ANS` varchar(256),
+    `CS_CONTA_CONTABIL` varchar(256) primary key,
+    `DESCRICAO` varchar(256),
+    `VL_SALDO_FINAL` varchar(256)
  );truncate table table_3; 
 CREATE TABLE IF NOT EXISTS table_4 (
-`DATA` varchar(256),
-`REG_ANS` varchar(256),
-`CS_CONTA_CONTABIL` varchar(256),
-`DESCRICAO` varchar(256),
-`VL_SALDO_FINAL` varchar(256)
+    `DATA` varchar(256),
+    `REG_ANS` varchar(256),
+    `CS_CONTA_CONTABIL` varchar(256) primary key,
+    `DESCRICAO` varchar(256),
+    `VL_SALDO_FINAL` varchar(256)
  );truncate table table_4;
 CREATE TABLE IF NOT EXISTS table_5 (
-`DATA` varchar(256),
-`REG_ANS` varchar(256),
-`CS_CONTA_CONTABIL` varchar(256),
-`DESCRICAO` varchar(256),
-`VL_SALDO_FINAL` varchar(256)
+    `DATA` varchar(256),
+    `REG_ANS` varchar(256),
+    `CS_CONTA_CONTABIL` varchar(256) primary key,
+    `DESCRICAO` varchar(256),
+    `VL_SALDO_FINAL` varchar(256)
  );truncate table table_5;
 CREATE TABLE IF NOT EXISTS table_relatorio (
-`Registro_ANS` varchar(256) primary key,
-`CNPJ` varchar(256),
-`RAZAO_SOCIAL` varchar(256),
-`NOME_FANTASIA` varchar(256),
-`MODALIDADE` varchar(256),
-`LOGRADOURO` varchar(256),
-`NUMERO` varchar(256),
-`COMPLEMENTO` varchar(256),
-`BAIRRO` varchar(256),
-`CIDADE` varchar(256),
-`UF` varchar(256),
-`CEP` varchar(256),
-`DDD` varchar(256),
-`TELEFONE` varchar(256),
-`FAX` varchar(256),
-`ENDERECO_ELETRONICO` varchar(256),
-`REPRESENTANTE` varchar(256),
-`CARGO_REPRESENTANTE` varchar(256),
-`DATA_REGISTRO_ANS` varchar(256)
+    `Registro_ANS` varchar(256) primary key,
+    `CNPJ` varchar(256),
+    `RAZAO_SOCIAL` varchar(256),
+    `NOME_FANTASIA` varchar(256),
+    `MODALIDADE` varchar(256),
+    `LOGRADOURO` varchar(256),
+    `NUMERO` varchar(256),
+    `COMPLEMENTO` varchar(256),
+    `BAIRRO` varchar(256),
+    `CIDADE` varchar(256),
+    `UF` varchar(256),
+    `CEP` varchar(256),
+    `DDD` varchar(256),
+    `TELEFONE` varchar(256),
+    `FAX` varchar(256),
+    `ENDERECO_ELETRONICO` varchar(256),
+    `REPRESENTANTE` varchar(256),
+    `CARGO_REPRESENTANTE` varchar(256),
+    `DATA_REGISTRO_ANS` varchar(256)
  );truncate table table_relatorio;
  
  
