@@ -1,4 +1,3 @@
-#Importação de Bibiliotecas
 import requests
 from bs4 import BeautifulSoup
 
