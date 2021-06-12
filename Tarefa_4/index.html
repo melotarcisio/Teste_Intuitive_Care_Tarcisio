@@ -3,59 +3,14 @@
     <head>
         <meta charset="utf-8">
         <title>Pesquisa</title>
+        <link rel="stylesheet" href="http://localhost:8080/style.css">
     </head>
     
-    <body background= yellow >
+    <body>
         <div id="app"></div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script>
-            new Vue({
-                el: '#app',
-                template:`
-                    <div>
-                        <div>
-                            <h1>Faça sua pesquisa</h1><br>
-                                <input type="text" name="src" v-model="pesquisa"><br>
-                                <button v-on:click="mounted" type="submit" value="Pesquisas">Pesquisar</button>
-                        </div>
-                        <div v-for="comment in search_">
-                            <h1>{{ comment.result1 }}</h1>
-                            <h1>{{ comment.result2 }}</h1>
-                        </div>
-                    </div>
-                 `,
-                data() {
-                    return {
-                        search_:[{
-                            result1: '',
-                            result2: '',
-                        }],
-                        pesquisa: '',
-                    }
-                },
-                methods:{
-                    newSearch(){
-                        if(this.pesquisa.trim()=== ''){return}
-                        console.log('show'),
-                        console.log(this.pesquisa)
-                        this.search_.push({
-                            result1:this.pesquisa,
-                        })
-                        this.pesquisa = ''
-                    },
-                    mounted () {
-                        axios
-                        .get("http://localhost:8084/search",{'headers':{'src':this.pesquisa}})
-                        .then(response => (this.info = response))
-                        this.search_.push({
-                            result1:this.info['data'],
-                        })
-                        this.pesquisa = ''
-                        }
-                    }   
-            })
-        </script>
-
+        <script src="http://localhost:8080/script.vue"></script>
     </body>
 </html>
+

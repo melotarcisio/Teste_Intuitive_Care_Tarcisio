@@ -3,13 +3,14 @@ const app = express();
 var http = require('http')
 const fs = require('fs')
 var parse = require('csv-parse');
-const levenshtein = require('js-levenshtein');
+const levenshtein = require('levenshtein');
 
 global.rela_torio = [ ]
 
 fs.readFile('Relatorio_cadop.csv','UTF8', function (err, fileData){
   parse(fileData,{columns: false,delimiter: ';', trim: true}, function(err, rows) {
     rela_torio = rows
+    console.log(rows[4][3])
   })
 })
 
@@ -17,7 +18,13 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 app.get('/', function(req,res){
-    res.sendFile(__dirname + "/index.html")
+  res.sendFile(__dirname + "/index.html")
+})
+app.get('/style.css', function(req,res){
+  res.sendFile(__dirname + "/style.css")
+})
+app.get('/script.vue', function(req,res){
+  res.sendFile(__dirname + "/script.vue")
 })
 
 app.get('/search', function(req,res){
