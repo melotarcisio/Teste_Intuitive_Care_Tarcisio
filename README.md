@@ -47,5 +47,5 @@
 <h2>Considerações Finais:</h2>
 <p>
   Gostei bastante do resultado dos testes pois sou bastante inexperiente com as linguagens que utilizei e aprendi bastante durante todo o processo.<br>
-  Apesar de não ter funcionado corretamente, fiquei bastante empolgado com as tecnologias que conheci realizando o quarto teste. Vou começar a estudar a fundo tanto o NodeJS     quanto o Vue.js pois vejo que as possibilidades de criação são infinitas.
+  Apesar do teste 4 não ter funcionado corretamente, fiquei bastante empolgado com as tecnologias que conheci realizando o quarto teste. Vou começar a estudar a fundo tanto o     NodeJS quanto o Vue.js pois vejo que as possibilidades de criação são infinitas.
 </p>
