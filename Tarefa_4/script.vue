@@ -15,7 +15,7 @@ new Vue({
                     </div>
                 </div>
             </div>
-            <div v-for="(comment,index) in search_" id="p_result">
+            <div v-for="comment in search_" id="p_result">
                 <h1>{{ comment.result1 }}</h1>
                 <h1>{{ comment.result1 }}</h1>
                 <h1>{{ comment.result1 }}</h1>
@@ -33,20 +33,19 @@ new Vue({
         }
     },
     methods:{
-        newSearch(){
+        async newSearch(){
             if(this.pesquisa.trim()=== ''){return}
-            console.log('show'),
-            console.log(this.pesquisa)
+            console.log(this.pesquisa),
+            await axios
+            .get("http://localhost:8088/search",{'headers':{'src':this.pesquisa}})
+            .then(response => (this.info = response))
+            .catch(),
+            console.log(this.info),
+            r = JSON.parse(JSON.stringify(this.info['data'])),
             this.search_.push({
-                result1:this.pesquisa,
+                result1:'Razão Social: ' + r['r1']['Razão Social'] + ', CNPJ: '+ r['r1']['CNPJ'] + ', Registro ANS: ' + r['r1']['Registro ANS'],
             })
             this.pesquisa = ''
-        },
-        mounted () {
-            axios
-            .get("http://8080-yellow-partridge-wflg6i6f.ws-us09.gitpod.io/search")
-            .then(response => (this.info = response))
-            console.log(this.info)
-            }
+        }
     }   
 })
