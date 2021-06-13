@@ -7,8 +7,14 @@
 <p>
   Resolução das tarefas de nivelamento básico para o processo seletivo de estágio da empresa Intuitive Care. <br>
   Tentei realizar os quatro testes apresentados e faltou apenas alguns detalhes no quarto teste para completar. <br>
-  Para executar corretamente os códigos deixei um script de instalação de bibiliotecas na pasta principal, basta executar o install.sh.
+  Para executar corretamente os códigos deixei um script de instalação de bibiliotecas na pasta principal, basta executar o seguinte comando no terminal: <br>
 </p>
+
+<div align="center">
+  
+    chmod +x install.sh && ./install.sh
+
+</div>
 
 <h2>Tarefa_1:</h2>
 <p>
