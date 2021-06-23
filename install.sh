@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt update &&
 sudo apt install npm -y && 
-cd Tarefa_4 &&
+cd Tarefa_4_incomplete &&
 npm init -y && 
 npm install nodejs && 
 npm install express && 
